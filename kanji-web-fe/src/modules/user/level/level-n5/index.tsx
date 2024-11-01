@@ -26,7 +26,7 @@ export default function LevelN5Page({}: Props) {
       const rs = await kanjiService.listKanji(queryParam);
       setListKanji(rs.data.content);
       setQuery({
-        ...query,
+        ...queryParam,
         total: rs.data.totalCount
       });
     } finally {
@@ -83,10 +83,6 @@ export default function LevelN5Page({}: Props) {
               pageSize={query.limit}
               current={query.page}
               onChange={(page) => {
-                setQuery({
-                  ...query,
-                  page,
-                });
                 handleGetListKanji({
                   ...query,
                   page,

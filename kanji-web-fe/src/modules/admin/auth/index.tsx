@@ -54,7 +54,7 @@ export default function LoginAdminPage() {
                 <div className="w-full">
                   <div className="block rounded-lg bg-white shadow-lg dark:bg-blue-950">
                     <div className="g-0 lg:flex lg:flex-wrap">
-                      <div className="px-4 md:px-0 lg:w-full">
+                      <div className="px-4 md:px-0 lg:w-full bg-gray-800">
                         <div className="md:mx-6 md:p-12">
                           {/* <!--Logo--> */}
                           <div className="text-center">
@@ -63,13 +63,13 @@ export default function LoginAdminPage() {
                               src="https://flowbite.com/docs/images/logo.svg"
                               alt="logo"
                             />
-                            <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                            <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold text-white">
                               Admin of Kanji Web
                             </h4>
                           </div>
 
                           <form>
-                            <p className="mb-4">Please login to your account</p>
+                            <p className="mb-4 text-white">Please login to your account</p>
                             {/* <!--Username input--> */}
                             <Input
                               type="text"
