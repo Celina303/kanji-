@@ -81,8 +81,7 @@ const testService = {
       try {
         const results = await db.UserExam.findAll({
           attributes: [
-            "idExam",
-            [db.sequelize.fn("COUNT", db.sequelize.col("idExam")), "count"],
+            [db.sequelize.fn("DISTINCT", db.sequelize.col("idExam")), "idExam"],
           ],
           include: [
             {
@@ -112,7 +111,7 @@ const testService = {
         const finalResult = DEFINE_LEVEL.map((level) => ({
           level: level,
           count:
-            results.find((result) => result.exams.level === level)?.count ?? 0,
+            results.filter((result) => result.exams.level === level)?.length ?? 0,
           total: resultsLevel?.find((item) => item.level === level)?.count ?? 0,
         }));
         resolve({
@@ -120,7 +119,7 @@ const testService = {
           message: "Process retrieved successfully",
         });
       } catch (error) {
-        logger.error(error);
+        logger.error(error.message);
         reject(error);
       }
     });
