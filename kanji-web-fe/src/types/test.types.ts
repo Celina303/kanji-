@@ -11,6 +11,6 @@ export interface ITest {
 
 export interface IProcess {
   level: string;
-  count: number;
-  total: number;
+  score: number;      
+  maxScore: number;  
 }

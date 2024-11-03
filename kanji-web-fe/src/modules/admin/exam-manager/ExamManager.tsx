@@ -81,7 +81,7 @@ export default function ExamManager() {
       title: 'Description',
       key: 'description',
       dataIndex: 'description',
-      render: (text) => <span className="font-normal">{text} minutes</span>,
+      render: (text) => <span className="font-normal">{text} </span>,
     },
     {
       title: 'Created date',

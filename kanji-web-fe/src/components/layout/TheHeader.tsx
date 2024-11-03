@@ -97,7 +97,7 @@ export default function TheHeader() {
                   style={{ backgroundColor: '#00aaff' }}
                   icon={<UserOutlined />}
                 />
-                {user.fullName ?? user.email}
+                {user.userName ?? user.email}
               </a>
             </Popover>
             <button

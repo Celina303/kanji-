@@ -57,18 +57,18 @@ export default function KanjiDetail() {
             </div>
             <Divider />
             <div className="grid grid-cols-2 gap-4 w-full">
-              <div className="space-y-3 ">
-                <div className="flex flex-row justify-start items-start">
-                  <span className="text-xl font-bold text-gray-800">
-                    Meaning:
-                  </span>
-                  <span className="text-xl ms-3">{kanji?.meaning}</span>
-                </div>
+                <div className="space-y-3 ">
                 <div className="flex flex-row justify-start items-start">
                   <span className="text-xl font-bold text-gray-800">
                     Kanji radicals:
                   </span>
                   <span className="text-xl ms-3">{kanji?.chinaMeaning}</span>
+                </div>
+                <div className="flex flex-row justify-start items-start">
+                  <span className="text-xl font-bold text-gray-800">
+                    Meaning:
+                  </span>
+                  <span className="text-xl ms-3">{kanji?.meaning}</span>
                 </div>
                 <div className="flex flex-row justify-start items-start">
                   <span className="text-xl font-bold text-gray-800">

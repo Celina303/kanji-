@@ -22,12 +22,12 @@ export default function BaseDisplayKanji({ kanji, onClick }: IProps) {
         type="vertical"
       />
       <div className="ms-3 flex flex-col justify-start items-start">
-        <span className="font-semibold text-md">
-          Meaning: <span className="font-normal text-sm">{kanji.meaning}</span>
-        </span>
-        <span className="font-semibold text-md">
+      <span className="font-semibold text-md">
           Kanji radicals:{' '}
           <span className="font-normal text-sm">{kanji.chinaMeaning}</span>
+        </span>
+        <span className="font-semibold text-md">
+          Meaning: <span className="font-normal text-sm">{kanji.meaning}</span>
         </span>
         <span className="font-semibold text-md">
           Mnemonic:
