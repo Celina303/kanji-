@@ -52,10 +52,10 @@ export default function HistoryTest() {
       ),
     },
     {
-      title: 'Created date',
-      key: 'createdAt',
-      dataIndex: 'createdAt',
-      render: (createdAt) => <span>{formatDate(createdAt)}</span>,
+      title: 'Time finnish',
+      key: 'updatedAt',
+      dataIndex: 'updatedAt',
+      render: (updatedAt) => <span>{formatDate(updatedAt)}</span>,
     },
   ];
 

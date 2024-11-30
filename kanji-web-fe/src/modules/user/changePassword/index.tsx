@@ -26,6 +26,9 @@ export default function ChangePassword() {
     };
     try {
       setLoading(true);
+      if (values.newPassword === values.oldPassword) {
+        return toast.warn("new password must be different from old password.");
+      }
       const rs = await authService.changePassword(data);
       toast.success(rs.message);
     } finally {
