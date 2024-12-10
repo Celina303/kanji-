@@ -6,9 +6,9 @@ const loginLogService = {
   getListLogin: () => {
     return new Promise(async (resolve, reject) => {
       try {
-        const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        const tenDayAgo = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
         const dates = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 10; i++) {
           const date = new Date();
           date.setDate(date.getDate() - i);
           dates.push(date.toISOString().split("T")[0]);
@@ -23,7 +23,7 @@ const loginLogService = {
           ],
           where: {
             logTime: {
-              [Op.gte]: oneWeekAgo,
+              [Op.gte]: tenDayAgo,
             },
           },
           group: ["loginDate"],

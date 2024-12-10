@@ -127,45 +127,53 @@ const authService = {
       }
     });
   },
-  resetPassword: (token, password) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const userDecoded = tokenService.verifyToken(token);
-        if (!userDecoded) {
-          reject({
-            message: "Invalid token",
-          });
-        }
-        const user = await db.User.findOne({
-          where: { email: userDecoded.email },
-        });
-        if (!user) {
-          resolve({
-            data: null,
-            message: "We couldn't find your email address",
-          });
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await db.User.update(
-          { password: hashedPassword },
-          {
-            where: {
-              email: userDecoded.email,
-            },
-          }
-        );
-        resolve({
-          message: "Password reset successfully",
-        });
-      } catch (error) {
-        logger.error(error);
+ resetPassword: (token, password) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userDecoded = tokenService.verifyToken(token);
+      if (!userDecoded) {
         reject({
-          message: error.message,
+          message: "Invalid token",
         });
       }
-    });
-  },
+      const user = await db.User.findOne({
+        where: { email: userDecoded.email },
+      });
+      if (!user) {
+        resolve({
+          data: null,
+          message: "We couldn't find your email address",
+        });
+      }
+
+      const isSamePassword = await bcrypt.compare(password, user.password);
+      if (isSamePassword) {
+        resolve({
+          message: "The new password cannot be the same as the old password",
+        });
+        return;
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await db.User.update(
+        { password: hashedPassword },
+        {
+          where: {
+            email: userDecoded.email,
+          },
+        }
+      );
+      resolve({
+        message: "Password reset successfully",
+      });
+    } catch (error) {
+      logger.error(error);
+      reject({
+        message: error.message,
+      });
+    }
+  });
+},
 };
 
 export default authService;

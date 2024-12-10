@@ -1,5 +1,7 @@
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
+  console.log(dateString);
+  
 
   if (isNaN(date.getTime())) {
     throw new Error('Invalid date string');

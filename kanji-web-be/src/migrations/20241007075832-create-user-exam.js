@@ -2,37 +2,45 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("UserExams", {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      idExam: {
-        type: Sequelize.UUID,
-        onDelete: "CASCADE",
-        references: {
-          model: {
-            tableName: "Exams",
-            name: "idExam",
-          },
-          key: "id",
-        },
+      userName: {
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-      idUser: {
-        type: Sequelize.UUID,
-        onDelete: "CASCADE",
-        references: {
-          model: {
-            tableName: "Users",
-            name: "idUser",
-          },
-          key: "id",
-        },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
-      score: {
-        type: Sequelize.INTEGER,
+      email: {
+        allowNull: false,
+        unique: true,
+        type: Sequelize.STRING,
+      },
+      fullName: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      gender: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      birthDay: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      phoneNumber: {
+        allowNull: true,
+        type: Sequelize.STRING, 
+      },
+      role: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -45,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("UserExams");
+    await queryInterface.dropTable("Users");
   },
 };

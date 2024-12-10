@@ -65,6 +65,8 @@ const testService = {
             content: scoreObj.map((item) => ({
               ...item.exams,
               score: item.score,
+              createdAt: item.createdAt,
+              updatedAt: item.updatedAt
             })),
             totalCount,
           },

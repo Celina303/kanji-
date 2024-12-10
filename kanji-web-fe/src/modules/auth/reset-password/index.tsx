@@ -29,8 +29,16 @@ export default function ResetPassword() {
     try {
       setLoading(true);
       const rs = await authService.resetPassword(token, password);
+
+      if (rs.message === 'The new password cannot be the same as the old password') {
+        toast.error(rs.message);
+        return;
+      }
+
       toast.success(rs.message);
       navigate(DEFINE_ROUTERS.auth.login);
+    } catch (error: any) {
+      toast.error(error.message || 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -52,10 +60,8 @@ export default function ResetPassword() {
                 <div className="w-full">
                   <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
                     <div className="g-0 lg:flex lg:flex-wrap">
-                      {/* <!-- Left column container--> */}
                       <div className="px-4 md:px-0 w-full bg-gray-800">
                         <div className="md:mx-12 md:p-12">
-                          {/* <!--Logo--> */}
                           <div className="text-center">
                             <img
                               className="mx-auto w-32"
@@ -71,7 +77,6 @@ export default function ResetPassword() {
                             <p className="mb-4 text-white">
                               Please enter your new password
                             </p>
-                            {/* <!--Username input--> */}
                             <Input.Password
                               type="password"
                               placeholder="New password"
@@ -100,7 +105,6 @@ export default function ResetPassword() {
                               </Visibility>
                             </div>
 
-                            {/* <!--Register button--> */}
                             <div className="flex items-center justify-between pb-6">
                               <p className="mb-0 mr-2 text-white">Have an account?</p>
                               <button
